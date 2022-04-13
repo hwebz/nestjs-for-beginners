@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  dev-db:
+    image: postgres:13
+    ports:
+      - 2345:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nestjs@2022
+      POSTGRES_DB: nestjs
+    networks:
+      - freecodecamp
+
+networks:
+  freecodecamp:
