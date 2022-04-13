@@ -29,7 +29,7 @@ export class AuthService {
     // if password incorrect throw exception
     if (!pwMatches) throw new ForbiddenException('Credentials incorrect');
 
-    // send back to user
+    // generate token
     return this.signToken(user.id, user.email);
   }
 
@@ -63,15 +63,22 @@ export class AuthService {
     }
   }
 
-  signToken(userId: number, email: string): Promise<string> {
+  async signToken(
+    userId: number,
+    email: string,
+  ): Promise<{ access_token: string }> {
     const payload = {
       sub: userId,
       email,
     };
 
-    return this.jwt.signAsync(payload, {
+    const token = await this.jwt.signAsync(payload, {
       expiresIn: '15m',
       secret: this.config.get('JWT_SECRET'),
     });
+
+    return {
+      access_token: token,
+    };
   }
 }
