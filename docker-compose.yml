@@ -6,7 +6,7 @@ services:
       - 2345:5432
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: nestjs@2022
+      POSTGRES_PASSWORD: nestjs2022
       POSTGRES_DB: nestjs
     networks:
       - freecodecamp
