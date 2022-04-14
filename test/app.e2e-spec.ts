@@ -4,6 +4,7 @@ import { PrismaService } from '../src/prisma/prisma.service';
 import { AppModule } from '../src/app.module';
 import * as pactum from 'pactum';
 import { AuthDTO } from '../src/auth/dto';
+import { EditUserDTO } from '../src/user/dto';
 
 const BASE_PORT = process.env.BASE_PORT;
 const FULL_URL = `${process.env.BASE_URL}:${BASE_PORT}`;
@@ -125,7 +126,23 @@ describe('App e2w', () => {
       });
     });
 
-    describe('Edit user', () => {});
+    describe('Edit user', () => {
+      it('should edit user', () => {
+        const dto: EditUserDTO = {
+          firstName: 'Test',
+          lastName: 'Last',
+        };
+        return pactum
+          .spec()
+          .patch('/users')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .withBody(dto)
+          .expectStatus(200)
+          .inspect();
+      });
+    });
   });
 
   describe('Bookmarks', () => {
