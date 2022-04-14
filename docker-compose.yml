@@ -10,6 +10,16 @@ services:
       POSTGRES_DB: nestjs
     networks:
       - freecodecamp
+  test-db:
+    image: postgres:13
+    ports:
+      - 2346:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nestjs2022
+      POSTGRES_DB: nestjs_test
+    networks:
+      - freecodecamp
 
 networks:
   freecodecamp:
