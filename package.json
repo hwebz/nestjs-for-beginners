@@ -10,12 +10,10 @@
     "db:dev:up": "docker-compose up -d dev-db",
     "prisma:dev:deploy": "./node_modules/.bin/prisma migrate deploy",
     "db:dev:restart": "yarn db:dev:rm && yarn db:dev:up && yarn prisma:dev:deploy",
-
     "db:test:rm": "docker-compose rm -f -l -v test-db",
     "db:test:up": "docker-compose up -d test-db",
     "prisma:test:deploy": "dotenv -e .env.test -- ./node_modules/.bin/prisma migrate deploy",
     "db:test:restart": "yarn db:test:rm && yarn db:test:up && yarn prisma:test:deploy",
-    
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -64,6 +62,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "jest": "^27.2.5",
+    "pactum": "^3.1.6",
     "prettier": "^2.3.2",
     "prisma": "^3.12.0",
     "source-map-support": "^0.5.20",
